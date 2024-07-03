@@ -1,12 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+@extends('admin.layouts.app')
+
+
+@section('title', 'List User')
+
+@section('content')
+
     <h1> usuários</h1>
+   
+    <a href="{{ route('users.create')}}">
+        Adicionar Usuário
+    </a>
+    <x-alert></x-alert>
     <table>
         <thead>
             <tr>
@@ -22,11 +26,12 @@
                 <tr>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <td>{{ $user->name }}</td>
+                    <td><a href="{{ route('users.edit',$user->id) }}">Edit</a></td>
+                    <td><a href="{{ route('users.show',$user->id) }}">Details</a></td>
                 </tr>
             @endforeach
         </tbody>
     </table>
     {{$users->links()}}
-</body>
-</html>
+
+@endsection
